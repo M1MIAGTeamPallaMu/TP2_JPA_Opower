@@ -1,6 +1,7 @@
 package jpa;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -29,6 +30,16 @@ public class Home {
      */
     private int rooms;
 
+    public Home(){
+
+    }
+    public Home(int size, int rooms, Person owner){
+        this.size = size;
+        this.rooms = rooms;
+        this.owner = owner;
+        this.heaters = new ArrayList<Heater>();
+    }
+
     @ManyToOne
     public Person getOwner() {
         return this.owner;
@@ -38,7 +49,7 @@ public class Home {
     public List<ElectronicDevice> getHomeDevices(){
         return this.owner.getDevices();
     }
-    
+
     @Transient
     public void setHomeDevices(ElectronicDevice electronicDevice){
         this.owner.getDevices().add(electronicDevice);

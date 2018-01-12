@@ -1,6 +1,7 @@
 package jpa;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -35,6 +36,19 @@ public class Person {
      *
      */
     private String mail;
+
+    public Person(){
+
+    }
+
+    public Person(String name, String surname, String mail){
+        this.name = name;
+        this.surname = surname;
+        this.mail = mail;
+        this.devices = new ArrayList<ElectronicDevice>();
+        this.homes = new ArrayList<Home>();
+        this.friends = new ArrayList<Person>();
+    }
 
     @OneToMany(mappedBy = "p")
     public List<ElectronicDevice> getDevices() {

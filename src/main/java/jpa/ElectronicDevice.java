@@ -6,7 +6,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class ElectronicDevice {
+public class ElectronicDevice extends SmartDrivers {
 
     /**
      *
@@ -21,6 +21,12 @@ public class ElectronicDevice {
      */
     private int watts;
 
+    public ElectronicDevice(){}
+
+    public ElectronicDevice(int watts, Person p){
+        this.watts = watts;
+        this.p = p;
+    }
 
     @Id
     @GeneratedValue

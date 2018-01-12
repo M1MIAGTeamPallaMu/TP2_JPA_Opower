@@ -8,14 +8,14 @@ public interface GenericDAO<T, PK extends Serializable> {
      * @param t
      * @return
      */
-    void create(T t);
+    T create(T t);
 
     /**
      *
      * @param id
      * @return
      */
-    T read(PK id);
+    T read(PK id, Class c);
 
     /**
      *

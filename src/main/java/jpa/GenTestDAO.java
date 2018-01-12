@@ -4,33 +4,32 @@ import javax.persistence.EntityManager;
 import java.io.Serializable;
 
 
-public class PersonDAO implements GenericDAO {
+public class GenTestDAO implements GenericDAO {
     private EntityManager entityManager;
 
     /**
      *
      * @param entityManager
      */
-    public PersonDAO(EntityManager entityManager){
+    public GenTestDAO(EntityManager entityManager){
         this.entityManager = entityManager;
     }
     /**
      * @param o
      * @return
      */
-    public void create(Object o) {
-        int numPerson = this.entityManager.createQuery("Select p from Person ", o.getClass()).getResultList().size();
-        if(numPerson < 0){
-            this.entityManager.persist(o);
-        }
+    public Object create(Object o) {
+        this.entityManager.persist(o);
+        return o;
     }
 
     /**
      * @param id
+     * @param c
      * @return
      */
-    public Object read(Serializable id) {
-        return null;
+    public Object read(Serializable id, Class c) {
+        return this.entityManager.find(c, id);
     }
 
     /**
@@ -38,13 +37,14 @@ public class PersonDAO implements GenericDAO {
      * @return
      */
     public Object update(Object o) {
-        return null;
+        return this.entityManager.merge(o);
     }
 
     /**
      * @param o
      */
     public void delete(Object o) {
-
+        this.entityManager.remove(o);
     }
+    
 }

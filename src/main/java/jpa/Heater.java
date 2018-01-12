@@ -6,16 +6,21 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class Heater {
+public class Heater extends SmartDrivers {
     /**
      *
      */
     private Home home;
-
     /**
      *
      */
     private long id;
+
+    public Heater(){
+    }
+    public Heater(Home home){
+        this.home = home;
+    }
 
     @ManyToOne
     public Home getHome() {
